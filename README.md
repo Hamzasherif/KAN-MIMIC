@@ -16,14 +16,31 @@ For the expanded SMOTE search, hyperparameters are selected using group-aware in
 
 ## Current reference results
 
-Five-fold test metrics, reported as mean ± population standard deviation:
+Metrics are mean ± population standard deviation across the five outer test folds. The fold partitions are patient-grouped. Threshold-dependent metrics use a threshold of 0.50.
 
-| Model | ROC-AUC | PR-AUC | F1 | Recall |
-|---|---:|---:|---:|---:|
-| CatBoost baseline | 0.8156 ± 0.0364 | 0.2485 ± 0.0677 | 0.2371 ± 0.0909 | 0.1935 ± 0.1043 |
-| KAN with expanded SMOTE search | 0.7214 ± 0.0342 | 0.1759 ± 0.0632 | 0.2096 ± 0.0723 | 0.2253 ± 0.1002 |
+### Ranking metrics
 
-The CatBoost fold metrics are in [`docs/catboost_baseline_metrics.csv`](docs/catboost_baseline_metrics.csv). SMOTE-KAN fold outputs are written under `experiments/kan_smote_grid_expanded/`; generated experiment outputs are excluded from Git.
+| Model | ROC-AUC | PR-AUC |
+|---|---:|---:|
+| CatBoost baseline | 0.8156 ± 0.0364 | 0.2485 ± 0.0677 |
+| Standard KAN | 0.7492 ± 0.0118 | 0.1838 ± 0.0592 |
+| Class-weighted KAN | 0.7417 ± 0.0221 | 0.1714 ± 0.0433 |
+| Oversampled KAN grid | 0.7601 ± 0.0135 | 0.1748 ± 0.0491 |
+| SMOTE KAN expanded grid | 0.7214 ± 0.0342 | 0.1759 ± 0.0632 |
+
+### Metrics at threshold 0.50
+
+| Model | Accuracy | F1 | Precision | Recall | Specificity |
+|---|---:|---:|---:|---:|---:|
+| CatBoost baseline | 0.9444 ± 0.0084 | 0.2371 ± 0.0909 | 0.3665 ± 0.0503 | 0.1935 ± 0.1043 | 0.9825 ± 0.0112 |
+| Standard KAN | 0.9511 ± 0.0036 | 0.0518 ± 0.0671 | 0.2286 ± 0.2942 | 0.0292 ± 0.0379 | 0.9980 ± 0.0014 |
+| Class-weighted KAN | 0.7683 ± 0.1230 | 0.2006 ± 0.0614 | 0.1296 ± 0.0490 | 0.5370 ± 0.1608 | 0.7798 ± 0.1352 |
+| Oversampled KAN grid | 0.7997 ± 0.0493 | 0.2103 ± 0.0440 | 0.1351 ± 0.0393 | 0.5300 ± 0.0934 | 0.8135 ± 0.0562 |
+| SMOTE KAN expanded grid | 0.9219 ± 0.0130 | 0.2096 ± 0.0723 | 0.2051 ± 0.0546 | 0.2253 ± 0.1002 | 0.9570 ± 0.0155 |
+
+The positive-class prevalence averaged 0.0485 ± 0.0046 across the folds. Because the outcome is imbalanced, interpret accuracy alongside PR-AUC, precision, recall, and F1.
+
+CatBoost fold metrics are available in [`docs/catboost_baseline_metrics.csv`](docs/catboost_baseline_metrics.csv). Per-fold KAN outputs are generated under `experiments/` and are excluded from Git; this section records their five-fold summaries.
 
 ## Repository layout
 
