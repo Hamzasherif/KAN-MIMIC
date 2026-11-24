@@ -22,3 +22,29 @@ experiments/catboost/*
 .idea/
 .DS_Store
 Thumbs.db
+
+# Private MIMIC data and derived feature matrices
+/data/catboost_saved_data/
+/data/processed_admission_features_csv/
+
+# Local environment and scheduler logs
+/.venv_linux/
+/logs/
+
+# Generated model outputs
+/experiments/kan_weighted/
+/experiments/kan_oversampled_grid/
+/experiments/kan_smote_grid_expanded/
+
+# Private MIMIC data and derived feature matrices
+/data/catboost_saved_data/
+/data/processed_admission_features_csv/
+
+# Local environment and scheduler logs
+/.venv_linux/
+/logs/
+
+# Generated model outputs
+/experiments/kan_weighted/
+/experiments/kan_oversampled_grid/
+/experiments/kan_smote_grid_expanded/
